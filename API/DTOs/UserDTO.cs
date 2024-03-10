@@ -13,6 +13,6 @@ namespace API.DTOs
         public string? LastName { get; set; }
         public int? HouseNumber { get; set; }
         public string UserName { get; set; }
-        public int? CreatedByID { get; set; }
+        public byte[] Token { get; set; }
     }
 }

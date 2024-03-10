@@ -3,6 +3,7 @@ using System;
 using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240308100805_UserPasswordAdded")]
+    partial class UserPasswordAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.0");
@@ -44,11 +47,13 @@ namespace API.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("CreatedAtDatetime")
+                    b.Property<DateTime?>("CreatedAtDatetime")
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("CreatedByID")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("HouseNumber")
@@ -58,7 +63,6 @@ namespace API.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<byte[]>("PasswordHash")
@@ -72,8 +76,8 @@ namespace API.Data.Migrations
                     b.Property<int>("RollID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<byte[]>("Token")
-                        .HasColumnType("BLOB");
+                    b.Property<string>("Token")
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("UpdatedAtDatetime")
                         .HasColumnType("TEXT");
